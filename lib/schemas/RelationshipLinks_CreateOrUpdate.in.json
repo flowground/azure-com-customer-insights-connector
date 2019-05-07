@@ -1,0 +1,202 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "hubName": {
+            "required": true,
+            "type": "string"
+        },
+        "relationshipLinkName": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_]+$"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "description": "Common properties of proxy resource.",
+                    "properties": {
+                        "id": {
+                            "description": "Resource ID.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "name": {
+                            "description": "Resource name.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "type": {
+                            "description": "Resource type.",
+                            "readOnly": true,
+                            "type": "string"
+                        }
+                    },
+                    "x-ms-azure-resource": true,
+                    "type": "object"
+                }
+            ],
+            "description": "The relationship link resource format.",
+            "properties": {
+                "properties": {
+                    "x-ms-client-flatten": true,
+                    "description": "The definition of relationship link.",
+                    "properties": {
+                        "description": {
+                            "additionalProperties": {
+                                "type": "string"
+                            },
+                            "description": "Localized descriptions for the Relationship Link.",
+                            "type": "object"
+                        },
+                        "displayName": {
+                            "additionalProperties": {
+                                "type": "string"
+                            },
+                            "description": "Localized display name for the Relationship Link.",
+                            "type": "object"
+                        },
+                        "interactionType": {
+                            "description": "The InteractionType associated with the Relationship Link.",
+                            "type": "string"
+                        },
+                        "linkName": {
+                            "description": "The name of the Relationship Link.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "mappings": {
+                            "description": "The mappings between Interaction and Relationship fields.",
+                            "items": {
+                                "description": "The fields mapping for Relationships.",
+                                "properties": {
+                                    "interactionFieldName": {
+                                        "description": "The field name on the Interaction Type.",
+                                        "type": "string"
+                                    },
+                                    "linkType": {
+                                        "description": "Link type.",
+                                        "enum": [
+                                            "UpdateAlways",
+                                            "CopyIfNull"
+                                        ],
+                                        "type": "string",
+                                        "x-ms-enum": {
+                                            "modelAsString": false,
+                                            "name": "LinkTypes"
+                                        }
+                                    },
+                                    "relationshipFieldName": {
+                                        "description": "The field name on the Relationship metadata.",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "interactionFieldName",
+                                    "relationshipFieldName"
+                                ],
+                                "type": "object"
+                            },
+                            "type": "array"
+                        },
+                        "profilePropertyReferences": {
+                            "description": "The property references for the Profile of the Relationship.",
+                            "items": {
+                                "description": "The participant profile property reference.",
+                                "properties": {
+                                    "interactionPropertyName": {
+                                        "description": "The source interaction property that maps to the target profile property.",
+                                        "type": "string"
+                                    },
+                                    "profilePropertyName": {
+                                        "description": "The target profile property that maps to the source interaction property.",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "interactionPropertyName",
+                                    "profilePropertyName"
+                                ],
+                                "type": "object"
+                            },
+                            "type": "array"
+                        },
+                        "provisioningState": {
+                            "description": "Provisioning state.",
+                            "readOnly": true,
+                            "enum": [
+                                "Provisioning",
+                                "Succeeded",
+                                "Expiring",
+                                "Deleting",
+                                "HumanIntervention",
+                                "Failed"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": true,
+                                "name": "ProvisioningStates"
+                            }
+                        },
+                        "relatedProfilePropertyReferences": {
+                            "description": "The property references for the Related Profile of the Relationship.",
+                            "items": {
+                                "description": "The participant profile property reference.",
+                                "properties": {
+                                    "interactionPropertyName": {
+                                        "description": "The source interaction property that maps to the target profile property.",
+                                        "type": "string"
+                                    },
+                                    "profilePropertyName": {
+                                        "description": "The target profile property that maps to the source interaction property.",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "interactionPropertyName",
+                                    "profilePropertyName"
+                                ],
+                                "type": "object"
+                            },
+                            "type": "array"
+                        },
+                        "relationshipGuidId": {
+                            "description": "The relationship guid id.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "relationshipName": {
+                            "description": "The Relationship associated with the Link.",
+                            "type": "string"
+                        },
+                        "tenantId": {
+                            "description": "The hub name.",
+                            "readOnly": true,
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "interactionType",
+                        "profilePropertyReferences",
+                        "relatedProfilePropertyReferences",
+                        "relationshipName"
+                    ]
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

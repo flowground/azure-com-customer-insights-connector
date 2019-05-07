@@ -1,0 +1,113 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "hubName": {
+            "required": true,
+            "type": "string"
+        },
+        "predictionName": {
+            "required": true,
+            "type": "string"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "The prediction model status.",
+            "properties": {
+                "message": {
+                    "description": "The model status message.",
+                    "readOnly": true,
+                    "type": "string"
+                },
+                "modelVersion": {
+                    "description": "Version of the model.",
+                    "readOnly": true,
+                    "type": "string"
+                },
+                "predictionGuidId": {
+                    "description": "The prediction GUID ID.",
+                    "readOnly": true,
+                    "type": "string"
+                },
+                "predictionName": {
+                    "description": "The prediction name.",
+                    "readOnly": true,
+                    "type": "string"
+                },
+                "signalsUsed": {
+                    "description": "The signals used.",
+                    "readOnly": true,
+                    "type": "integer"
+                },
+                "status": {
+                    "description": "Prediction model life cycle.  When prediction is in PendingModelConfirmation status, it is allowed to update the status to PendingFeaturing or Active through API.",
+                    "enum": [
+                        "New",
+                        "Provisioning",
+                        "ProvisioningFailed",
+                        "PendingDiscovering",
+                        "Discovering",
+                        "PendingFeaturing",
+                        "Featuring",
+                        "FeaturingFailed",
+                        "PendingTraining",
+                        "Training",
+                        "TrainingFailed",
+                        "Evaluating",
+                        "EvaluatingFailed",
+                        "PendingModelConfirmation",
+                        "Active",
+                        "Deleted",
+                        "HumanIntervention",
+                        "Failed"
+                    ],
+                    "type": "string",
+                    "x-ms-enum": {
+                        "modelAsString": true,
+                        "name": "PredictionModelLifeCycle"
+                    }
+                },
+                "tenantId": {
+                    "description": "The hub name.",
+                    "readOnly": true,
+                    "type": "string"
+                },
+                "testSetCount": {
+                    "description": "Count of the test set.",
+                    "readOnly": true,
+                    "type": "integer"
+                },
+                "trainingAccuracy": {
+                    "description": "The training accuracy.",
+                    "format": "decimal",
+                    "readOnly": true,
+                    "type": "integer"
+                },
+                "trainingSetCount": {
+                    "description": "Count of the training set.",
+                    "readOnly": true,
+                    "type": "integer"
+                },
+                "validationSetCount": {
+                    "description": "Count of the validation set.",
+                    "readOnly": true,
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "status"
+            ],
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

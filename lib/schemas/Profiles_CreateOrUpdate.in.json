@@ -1,0 +1,383 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "hubName": {
+            "required": true,
+            "type": "string"
+        },
+        "profileName": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_]+$"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "description": "Common properties of proxy resource.",
+                    "properties": {
+                        "id": {
+                            "description": "Resource ID.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "name": {
+                            "description": "Resource name.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "type": {
+                            "description": "Resource type.",
+                            "readOnly": true,
+                            "type": "string"
+                        }
+                    },
+                    "x-ms-azure-resource": true,
+                    "type": "object"
+                }
+            ],
+            "description": "The profile resource format.",
+            "properties": {
+                "properties": {
+                    "x-ms-client-flatten": true,
+                    "allOf": [
+                        {
+                            "allOf": [
+                                {
+                                    "description": "The Metadata definition base.",
+                                    "properties": {
+                                        "attributes": {
+                                            "additionalProperties": {
+                                                "items": {
+                                                    "type": "string"
+                                                },
+                                                "type": "array"
+                                            },
+                                            "description": "The attributes for the Type.",
+                                            "type": "object"
+                                        },
+                                        "description": {
+                                            "additionalProperties": {
+                                                "type": "string"
+                                            },
+                                            "description": "Localized descriptions for the property.",
+                                            "type": "object"
+                                        },
+                                        "displayName": {
+                                            "additionalProperties": {
+                                                "type": "string"
+                                            },
+                                            "description": "Localized display names for the property.",
+                                            "type": "object"
+                                        },
+                                        "largeImage": {
+                                            "description": "Large Image associated with the Property or EntityType.",
+                                            "type": "string"
+                                        },
+                                        "localizedAttributes": {
+                                            "additionalProperties": {
+                                                "additionalProperties": {
+                                                    "type": "string"
+                                                },
+                                                "type": "object"
+                                            },
+                                            "description": "Any custom localized attributes for the Type.",
+                                            "type": "object"
+                                        },
+                                        "mediumImage": {
+                                            "description": "Medium Image associated with the Property or EntityType.",
+                                            "type": "string"
+                                        },
+                                        "smallImage": {
+                                            "description": "Small Image associated with the Property or EntityType.",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            ],
+                            "description": "Describes an entity.",
+                            "properties": {
+                                "apiEntitySetName": {
+                                    "description": "The api entity set name. This becomes the odata entity set name for the entity Type being referred in this object.",
+                                    "type": "string"
+                                },
+                                "entityType": {
+                                    "description": "Type of entity.",
+                                    "enum": [
+                                        "None",
+                                        "Profile",
+                                        "Interaction",
+                                        "Relationship"
+                                    ],
+                                    "type": "string",
+                                    "x-ms-enum": {
+                                        "modelAsString": false,
+                                        "name": "EntityTypes"
+                                    }
+                                },
+                                "fields": {
+                                    "description": "The properties of the Profile.",
+                                    "items": {
+                                        "description": "Property definition.",
+                                        "properties": {
+                                            "arrayValueSeparator": {
+                                                "description": "Array value separator for properties with isArray set.",
+                                                "type": "string"
+                                            },
+                                            "dataSourcePrecedenceRules": {
+                                                "description": "This is specific to interactions modeled as activities. Data sources are used to determine where data is stored and also in precedence rules.",
+                                                "items": {
+                                                    "description": "The data source precedence is a way to know the precedence of each data source.",
+                                                    "properties": {
+                                                        "dataSource": {
+                                                            "x-ms-client-flatten": true,
+                                                            "description": "Data Source is a way for us to know the source of instances. A single type can have data coming in from multiple places. In activities we use this to determine precedence rules.",
+                                                            "properties": {
+                                                                "dataSourceReferenceId": {
+                                                                    "description": "The data source reference id.",
+                                                                    "readOnly": true,
+                                                                    "type": "string"
+                                                                },
+                                                                "dataSourceType": {
+                                                                    "description": "The data source type.",
+                                                                    "enum": [
+                                                                        "Connector",
+                                                                        "LinkInteraction",
+                                                                        "SystemDefault"
+                                                                    ],
+                                                                    "readOnly": true,
+                                                                    "type": "string",
+                                                                    "x-ms-enum": {
+                                                                        "modelAsString": true,
+                                                                        "name": "DataSourceType"
+                                                                    }
+                                                                },
+                                                                "id": {
+                                                                    "description": "The data source ID.",
+                                                                    "readOnly": true,
+                                                                    "type": "integer"
+                                                                },
+                                                                "name": {
+                                                                    "description": "The data source name",
+                                                                    "readOnly": true,
+                                                                    "type": "string"
+                                                                },
+                                                                "status": {
+                                                                    "description": "The data source status.",
+                                                                    "enum": [
+                                                                        "None",
+                                                                        "Active",
+                                                                        "Deleted"
+                                                                    ],
+                                                                    "readOnly": true,
+                                                                    "type": "string",
+                                                                    "x-ms-enum": {
+                                                                        "modelAsString": true,
+                                                                        "name": "Status"
+                                                                    }
+                                                                }
+                                                            },
+                                                            "type": "object"
+                                                        },
+                                                        "precedence": {
+                                                            "description": "the precedence value.",
+                                                            "type": "integer"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                "readOnly": true,
+                                                "type": "array"
+                                            },
+                                            "enumValidValues": {
+                                                "description": "Describes valid values for an enum property.",
+                                                "items": {
+                                                    "description": "Valid enum values in case of an enum property.",
+                                                    "properties": {
+                                                        "localizedValueNames": {
+                                                            "additionalProperties": {
+                                                                "type": "string"
+                                                            },
+                                                            "description": "Localized names of the enum member.",
+                                                            "type": "object"
+                                                        },
+                                                        "value": {
+                                                            "description": "The integer value of the enum member.",
+                                                            "type": "integer"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                "type": "array"
+                                            },
+                                            "fieldName": {
+                                                "description": "Name of the property.",
+                                                "type": "string"
+                                            },
+                                            "fieldType": {
+                                                "description": "Type of the property.",
+                                                "type": "string"
+                                            },
+                                            "isArray": {
+                                                "description": "Indicates if the property is actually an array of the fieldType above on the data api.",
+                                                "type": "boolean"
+                                            },
+                                            "isAvailableInGraph": {
+                                                "description": "Whether property is available in graph or not.",
+                                                "type": "boolean"
+                                            },
+                                            "isEnum": {
+                                                "description": "Indicates if the property is an enum.",
+                                                "type": "boolean"
+                                            },
+                                            "isFlagEnum": {
+                                                "description": "Indicates if the property is an flag enum.",
+                                                "type": "boolean"
+                                            },
+                                            "isImage": {
+                                                "description": "Whether the property is an Image.",
+                                                "type": "boolean"
+                                            },
+                                            "isLocalizedString": {
+                                                "description": "Whether the property is a localized string.",
+                                                "type": "boolean"
+                                            },
+                                            "isName": {
+                                                "description": "Whether the property is a name or a part of name.",
+                                                "type": "boolean"
+                                            },
+                                            "isRequired": {
+                                                "description": "Whether property value is required on instances, IsRequired field only for Interaction. Profile Instance will not check for required field.",
+                                                "type": "boolean"
+                                            },
+                                            "maxLength": {
+                                                "description": "Max length of string. Used only if type is string.",
+                                                "type": "integer"
+                                            },
+                                            "propertyId": {
+                                                "description": "The ID associated with the property.",
+                                                "type": "string"
+                                            },
+                                            "schemaItemPropLink": {
+                                                "description": "URL encoded schema.org item prop link for the property.",
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "fieldName",
+                                            "fieldType"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                },
+                                "instancesCount": {
+                                    "description": "The instance count.",
+                                    "type": "integer"
+                                },
+                                "lastChangedUtc": {
+                                    "description": "The last changed time for the type definition.",
+                                    "format": "date-time",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "provisioningState": {
+                                    "description": "Provisioning state.",
+                                    "readOnly": true,
+                                    "enum": [
+                                        "Provisioning",
+                                        "Succeeded",
+                                        "Expiring",
+                                        "Deleting",
+                                        "HumanIntervention",
+                                        "Failed"
+                                    ],
+                                    "type": "string",
+                                    "x-ms-enum": {
+                                        "modelAsString": true,
+                                        "name": "ProvisioningStates"
+                                    }
+                                },
+                                "schemaItemTypeLink": {
+                                    "description": "The schema org link. This helps ACI identify and suggest semantic models.",
+                                    "type": "string"
+                                },
+                                "tenantId": {
+                                    "description": "The hub name.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "timestampFieldName": {
+                                    "description": "The timestamp property name. Represents the time when the interaction or profile update happened.",
+                                    "type": "string"
+                                },
+                                "typeName": {
+                                    "description": "The name of the entity.",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    ],
+                    "description": "The profile type definition.",
+                    "properties": {
+                        "strongIds": {
+                            "description": "The strong IDs.",
+                            "items": {
+                                "description": "Property/Properties which represent a unique ID.",
+                                "properties": {
+                                    "description": {
+                                        "additionalProperties": {
+                                            "type": "string"
+                                        },
+                                        "description": "Localized descriptions.",
+                                        "type": "object"
+                                    },
+                                    "displayName": {
+                                        "additionalProperties": {
+                                            "type": "string"
+                                        },
+                                        "description": "Localized display name.",
+                                        "type": "object"
+                                    },
+                                    "keyPropertyNames": {
+                                        "description": "The properties which make up the unique ID.",
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "type": "array"
+                                    },
+                                    "strongIdName": {
+                                        "description": "The Name identifying the strong ID.",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "keyPropertyNames",
+                                    "strongIdName"
+                                ],
+                                "type": "object"
+                            },
+                            "type": "array"
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

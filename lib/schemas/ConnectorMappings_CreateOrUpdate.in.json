@@ -1,0 +1,348 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "hubName": {
+            "required": true,
+            "type": "string"
+        },
+        "connectorName": {
+            "required": true,
+            "type": "string"
+        },
+        "mappingName": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_]+$"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "description": "Common properties of proxy resource.",
+                    "properties": {
+                        "id": {
+                            "description": "Resource ID.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "name": {
+                            "description": "Resource name.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "type": {
+                            "description": "Resource type.",
+                            "readOnly": true,
+                            "type": "string"
+                        }
+                    },
+                    "x-ms-azure-resource": true,
+                    "type": "object"
+                }
+            ],
+            "description": "The connector mapping resource format.",
+            "properties": {
+                "properties": {
+                    "x-ms-client-flatten": true,
+                    "description": "The connector mapping definition.",
+                    "properties": {
+                        "connectorMappingName": {
+                            "description": "The connector mapping name",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "connectorName": {
+                            "description": "The connector name.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "connectorType": {
+                            "description": "Type of connector.",
+                            "enum": [
+                                "None",
+                                "CRM",
+                                "AzureBlob",
+                                "Salesforce",
+                                "ExchangeOnline",
+                                "Outbound"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": true,
+                                "name": "ConnectorTypes"
+                            }
+                        },
+                        "created": {
+                            "description": "The created time.",
+                            "format": "date-time",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "dataFormatId": {
+                            "description": "The DataFormat ID.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "description": {
+                            "description": "The description of the connector mapping.",
+                            "type": "string"
+                        },
+                        "displayName": {
+                            "description": "Display name for the connector mapping.",
+                            "type": "string"
+                        },
+                        "entityType": {
+                            "description": "Defines which entity type the file should map to.",
+                            "enum": [
+                                "None",
+                                "Profile",
+                                "Interaction",
+                                "Relationship"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": false,
+                                "name": "EntityTypes"
+                            }
+                        },
+                        "entityTypeName": {
+                            "description": "The mapping entity name.",
+                            "type": "string"
+                        },
+                        "lastModified": {
+                            "description": "The last modified time.",
+                            "format": "date-time",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "mappingProperties": {
+                            "description": "The properties of the mapping.",
+                            "properties": {
+                                "availability": {
+                                    "description": "The availability of mapping property.",
+                                    "properties": {
+                                        "frequency": {
+                                            "description": "The frequency to update.",
+                                            "enum": [
+                                                "Minute",
+                                                "Hour",
+                                                "Day",
+                                                "Week",
+                                                "Month"
+                                            ],
+                                            "type": "string",
+                                            "x-ms-enum": {
+                                                "modelAsString": false,
+                                                "name": "FrequencyTypes"
+                                            }
+                                        },
+                                        "interval": {
+                                            "description": "The interval of the given frequency to use.",
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "required": [
+                                        "interval"
+                                    ],
+                                    "type": "object"
+                                },
+                                "completeOperation": {
+                                    "description": "The operation after import is done.",
+                                    "properties": {
+                                        "completionOperationType": {
+                                            "description": "The type of completion operation.",
+                                            "enum": [
+                                                "DoNothing",
+                                                "DeleteFile",
+                                                "MoveFile"
+                                            ],
+                                            "type": "string",
+                                            "x-ms-enum": {
+                                                "modelAsString": false,
+                                                "name": "CompletionOperationTypes"
+                                            }
+                                        },
+                                        "destinationFolder": {
+                                            "description": "The destination folder where files will be moved to once the import is done.",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "errorManagement": {
+                                    "description": "The error management setting for the mapping.",
+                                    "properties": {
+                                        "errorLimit": {
+                                            "description": "The error limit allowed while importing data.",
+                                            "type": "integer"
+                                        },
+                                        "errorManagementType": {
+                                            "description": "The type of error management to use for the mapping.",
+                                            "enum": [
+                                                "RejectAndContinue",
+                                                "StopImport",
+                                                "RejectUntilLimit"
+                                            ],
+                                            "type": "string",
+                                            "x-ms-enum": {
+                                                "modelAsString": false,
+                                                "name": "ErrorManagementTypes"
+                                            }
+                                        }
+                                    },
+                                    "required": [
+                                        "errorManagementType"
+                                    ],
+                                    "type": "object"
+                                },
+                                "fileFilter": {
+                                    "description": "The file filter for the mapping.",
+                                    "type": "string"
+                                },
+                                "folderPath": {
+                                    "description": "The folder path for the mapping.",
+                                    "type": "string"
+                                },
+                                "format": {
+                                    "description": "The format of mapping property.",
+                                    "properties": {
+                                        "acceptLanguage": {
+                                            "description": "The oData language.",
+                                            "type": "string"
+                                        },
+                                        "arraySeparator": {
+                                            "description": "Character separating array elements.",
+                                            "type": "string"
+                                        },
+                                        "columnDelimiter": {
+                                            "description": "The character that signifies a break between columns.",
+                                            "type": "string"
+                                        },
+                                        "formatType": {
+                                            "description": "The type mapping format.",
+                                            "enum": [
+                                                "TextFormat"
+                                            ],
+                                            "type": "string",
+                                            "x-ms-enum": {
+                                                "modelAsString": false,
+                                                "name": "FormatTypes"
+                                            }
+                                        },
+                                        "quoteCharacter": {
+                                            "description": "Quote character, used to indicate enquoted fields.",
+                                            "type": "string"
+                                        },
+                                        "quoteEscapeCharacter": {
+                                            "description": "Escape character for quotes, can be the same as the quoteCharacter.",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "formatType"
+                                    ],
+                                    "type": "object"
+                                },
+                                "hasHeader": {
+                                    "description": "If the file contains a header or not.",
+                                    "type": "boolean"
+                                },
+                                "structure": {
+                                    "description": "Ingestion mapping information at property level.",
+                                    "items": {
+                                        "description": "Connector mapping property structure.",
+                                        "properties": {
+                                            "columnName": {
+                                                "description": "The column name of the import file.",
+                                                "type": "string"
+                                            },
+                                            "customFormatSpecifier": {
+                                                "description": "Custom format specifier for input parsing.",
+                                                "type": "string"
+                                            },
+                                            "isEncrypted": {
+                                                "description": "Indicates if the column is encrypted.",
+                                                "type": "boolean"
+                                            },
+                                            "propertyName": {
+                                                "description": "The property name of the mapping entity.",
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "propertyName",
+                                            "columnName"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                }
+                            },
+                            "required": [
+                                "availability",
+                                "completeOperation",
+                                "errorManagement",
+                                "format",
+                                "structure"
+                            ],
+                            "type": "object"
+                        },
+                        "nextRunTime": {
+                            "description": "The next run time based on customer's settings.",
+                            "format": "date-time",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "runId": {
+                            "description": "The RunId.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "state": {
+                            "description": "State of connector mapping.",
+                            "enum": [
+                                "Creating",
+                                "Created",
+                                "Failed",
+                                "Ready",
+                                "Running",
+                                "Stopped",
+                                "Expiring"
+                            ],
+                            "readOnly": true,
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": false,
+                                "name": "ConnectorMappingStates"
+                            }
+                        },
+                        "tenantId": {
+                            "description": "The hub name.",
+                            "readOnly": true,
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "entityType",
+                        "entityTypeName",
+                        "mappingProperties"
+                    ]
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

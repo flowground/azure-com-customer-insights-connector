@@ -1,0 +1,39 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "hubName": {
+            "required": true,
+            "type": "string"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Input type for getting image upload url.",
+            "properties": {
+                "entityType": {
+                    "description": "Type of entity. Can be Profile or Interaction.",
+                    "type": "string"
+                },
+                "entityTypeName": {
+                    "description": "Name of the entity type.",
+                    "type": "string"
+                },
+                "relativePath": {
+                    "description": "Relative path of the image.",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

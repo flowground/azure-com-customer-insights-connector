@@ -1,0 +1,1172 @@
+{
+    "title": "CustomerInsightsManagementClient",
+    "description": "The Azure Customer Insights management API provides a RESTful set of web services that interact with Azure Customer Insights service to manage your resources. The API has entities that capture the relationship between an end user and the Azure Customer Insights service.",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/azure.com/customer-insights/2017-04-26/swagger.json",
+    "envVars": {
+        "OAUTH_CLIENT_ID": {
+            "description": "OAuth Client ID"
+        },
+        "OAUTH_CLIENT_SECRET": {
+            "description": "OAuth Client Secret"
+        }
+    },
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://management.azure.com/",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "azure_auth": {
+                "label": "Azure Active Directory OAuth2 Flow.",
+                "viewClass": "OAuthFieldView"
+            }
+        },
+        "oauth2": {
+            "client_id": "{{OAUTH_CLIENT_ID}}",
+            "client_secret": "{{OAUTH_CLIENT_SECRET}}",
+            "auth_uri": "https://login.microsoftonline.com/common/oauth2/authorize"
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "Operations_List": {
+            "main": "./lib/actions/Operations_List.js",
+            "title": "Lists all of the available Customer Insights REST API operations.",
+            "description": "Lists all of the available Customer Insights REST API operations.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Operations_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Hubs_List": {
+            "main": "./lib/actions/Hubs_List.js",
+            "title": "Gets all hubs in the specified subscription.",
+            "description": "Gets all hubs in the specified subscription.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Hubs_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Hubs_ListByResourceGroup": {
+            "main": "./lib/actions/Hubs_ListByResourceGroup.js",
+            "title": "Gets all the hubs in a resource group.",
+            "description": "Gets all the hubs in a resource group.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Hubs_ListByResourceGroup.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Hubs_Delete": {
+            "main": "./lib/actions/Hubs_Delete.js",
+            "title": "Deletes the specified hub.",
+            "description": "Deletes the specified hub.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Hubs_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Hubs_Get": {
+            "main": "./lib/actions/Hubs_Get.js",
+            "title": "Gets information about the specified hub.",
+            "description": "Gets information about the specified hub.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Hubs_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Hubs_Update": {
+            "main": "./lib/actions/Hubs_Update.js",
+            "title": "Updates a Hub.",
+            "description": "Updates a Hub.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Hubs_Update.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Hubs_CreateOrUpdate": {
+            "main": "./lib/actions/Hubs_CreateOrUpdate.js",
+            "title": "Creates a hub, or updates an existing hub.",
+            "description": "Creates a hub, or updates an existing hub.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Hubs_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "AuthorizationPolicies_ListByHub": {
+            "main": "./lib/actions/AuthorizationPolicies_ListByHub.js",
+            "title": "Gets all the authorization policies in a specified hub.",
+            "description": "Gets all the authorization policies in a specified hub.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/AuthorizationPolicies_ListByHub.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "AuthorizationPolicies_Get": {
+            "main": "./lib/actions/AuthorizationPolicies_Get.js",
+            "title": "Gets an authorization policy in the hub.",
+            "description": "Gets an authorization policy in the hub.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/AuthorizationPolicies_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "AuthorizationPolicies_CreateOrUpdate": {
+            "main": "./lib/actions/AuthorizationPolicies_CreateOrUpdate.js",
+            "title": "Creates an authorization policy or updates an existing authorization policy.",
+            "description": "Creates an authorization policy or updates an existing authorization policy.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/AuthorizationPolicies_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "AuthorizationPolicies_RegeneratePrimaryKey": {
+            "main": "./lib/actions/AuthorizationPolicies_RegeneratePrimaryKey.js",
+            "title": "Regenerates the primary policy key of the specified authorization policy.",
+            "description": "Regenerates the primary policy key of the specified authorization policy.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/AuthorizationPolicies_RegeneratePrimaryKey.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "AuthorizationPolicies_RegenerateSecondaryKey": {
+            "main": "./lib/actions/AuthorizationPolicies_RegenerateSecondaryKey.js",
+            "title": "Regenerates the secondary policy key of the specified authorization policy.",
+            "description": "Regenerates the secondary policy key of the specified authorization policy.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/AuthorizationPolicies_RegenerateSecondaryKey.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Connectors_ListByHub": {
+            "main": "./lib/actions/Connectors_ListByHub.js",
+            "title": "Gets all the connectors in the specified hub.",
+            "description": "Gets all the connectors in the specified hub.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Connectors_ListByHub.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Connectors_Delete": {
+            "main": "./lib/actions/Connectors_Delete.js",
+            "title": "Deletes a connector in the hub.",
+            "description": "Deletes a connector in the hub.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Connectors_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Connectors_Get": {
+            "main": "./lib/actions/Connectors_Get.js",
+            "title": "Gets a connector in the hub.",
+            "description": "Gets a connector in the hub.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Connectors_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Connectors_CreateOrUpdate": {
+            "main": "./lib/actions/Connectors_CreateOrUpdate.js",
+            "title": "Creates a connector or updates an existing connector in the hub.",
+            "description": "Creates a connector or updates an existing connector in the hub.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Connectors_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ConnectorMappings_ListByConnector": {
+            "main": "./lib/actions/ConnectorMappings_ListByConnector.js",
+            "title": "Gets all the connector mappings in the specified connector.",
+            "description": "Gets all the connector mappings in the specified connector.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ConnectorMappings_ListByConnector.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ConnectorMappings_Delete": {
+            "main": "./lib/actions/ConnectorMappings_Delete.js",
+            "title": "Deletes a connector mapping in the connector.",
+            "description": "Deletes a connector mapping in the connector.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ConnectorMappings_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ConnectorMappings_Get": {
+            "main": "./lib/actions/ConnectorMappings_Get.js",
+            "title": "Gets a connector mapping in the connector.",
+            "description": "Gets a connector mapping in the connector.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ConnectorMappings_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ConnectorMappings_CreateOrUpdate": {
+            "main": "./lib/actions/ConnectorMappings_CreateOrUpdate.js",
+            "title": "Creates a connector mapping or updates an existing connector mapping in the connector.",
+            "description": "Creates a connector mapping or updates an existing connector mapping in the connector.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ConnectorMappings_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Images_GetUploadUrlForData": {
+            "main": "./lib/actions/Images_GetUploadUrlForData.js",
+            "title": "Gets data image upload URL.",
+            "description": "Gets data image upload URL.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Images_GetUploadUrlForData.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Images_GetUploadUrlForEntityType": {
+            "main": "./lib/actions/Images_GetUploadUrlForEntityType.js",
+            "title": "Gets entity type (profile or interaction) image upload URL.",
+            "description": "Gets entity type (profile or interaction) image upload URL.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Images_GetUploadUrlForEntityType.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Interactions_ListByHub": {
+            "main": "./lib/actions/Interactions_ListByHub.js",
+            "title": "Gets all interactions in the hub.",
+            "description": "Gets all interactions in the hub.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Interactions_ListByHub.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Interactions_Get": {
+            "main": "./lib/actions/Interactions_Get.js",
+            "title": "Gets information about the specified interaction.",
+            "description": "Gets information about the specified interaction.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Interactions_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Interactions_CreateOrUpdate": {
+            "main": "./lib/actions/Interactions_CreateOrUpdate.js",
+            "title": "Creates an interaction or updates an existing interaction within a hub.",
+            "description": "Creates an interaction or updates an existing interaction within a hub.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Interactions_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Interactions_SuggestRelationshipLinks": {
+            "main": "./lib/actions/Interactions_SuggestRelationshipLinks.js",
+            "title": "Suggests relationships to create relationship links.",
+            "description": "Suggests relationships to create relationship links.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Interactions_SuggestRelationshipLinks.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Kpi_ListByHub": {
+            "main": "./lib/actions/Kpi_ListByHub.js",
+            "title": "Gets all the KPIs in the specified hub.",
+            "description": "Gets all the KPIs in the specified hub.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Kpi_ListByHub.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Kpi_Delete": {
+            "main": "./lib/actions/Kpi_Delete.js",
+            "title": "Deletes a KPI in the hub.",
+            "description": "Deletes a KPI in the hub.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Kpi_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Kpi_Get": {
+            "main": "./lib/actions/Kpi_Get.js",
+            "title": "Gets a KPI in the hub.",
+            "description": "Gets a KPI in the hub.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Kpi_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Kpi_CreateOrUpdate": {
+            "main": "./lib/actions/Kpi_CreateOrUpdate.js",
+            "title": "Creates a KPI or updates an existing KPI in the hub.",
+            "description": "Creates a KPI or updates an existing KPI in the hub.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Kpi_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Kpi_Reprocess": {
+            "main": "./lib/actions/Kpi_Reprocess.js",
+            "title": "Reprocesses the Kpi values of the specified KPI.",
+            "description": "Reprocesses the Kpi values of the specified KPI.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Kpi_Reprocess.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Links_ListByHub": {
+            "main": "./lib/actions/Links_ListByHub.js",
+            "title": "Gets all the links in the specified hub.",
+            "description": "Gets all the links in the specified hub.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Links_ListByHub.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Links_Delete": {
+            "main": "./lib/actions/Links_Delete.js",
+            "title": "Deletes a link in the hub.",
+            "description": "Deletes a link in the hub.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Links_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Links_Get": {
+            "main": "./lib/actions/Links_Get.js",
+            "title": "Gets a link in the hub.",
+            "description": "Gets a link in the hub.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Links_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Links_CreateOrUpdate": {
+            "main": "./lib/actions/Links_CreateOrUpdate.js",
+            "title": "Creates a link or updates an existing link in the hub.",
+            "description": "Creates a link or updates an existing link in the hub.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Links_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Predictions_ListByHub": {
+            "main": "./lib/actions/Predictions_ListByHub.js",
+            "title": "Gets all the predictions in the specified hub.",
+            "description": "Gets all the predictions in the specified hub.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Predictions_ListByHub.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Predictions_Delete": {
+            "main": "./lib/actions/Predictions_Delete.js",
+            "title": "Deletes a Prediction in the hub.",
+            "description": "Deletes a Prediction in the hub.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Predictions_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Predictions_Get": {
+            "main": "./lib/actions/Predictions_Get.js",
+            "title": "Gets a Prediction in the hub.",
+            "description": "Gets a Prediction in the hub.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Predictions_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Predictions_CreateOrUpdate": {
+            "main": "./lib/actions/Predictions_CreateOrUpdate.js",
+            "title": "Creates a Prediction or updates an existing Prediction in the hub.",
+            "description": "Creates a Prediction or updates an existing Prediction in the hub.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Predictions_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Predictions_GetModelStatus": {
+            "main": "./lib/actions/Predictions_GetModelStatus.js",
+            "title": "Gets model status of the prediction.",
+            "description": "Gets model status of the prediction.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Predictions_GetModelStatus.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Predictions_GetTrainingResults": {
+            "main": "./lib/actions/Predictions_GetTrainingResults.js",
+            "title": "Gets training results.",
+            "description": "Gets training results.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Predictions_GetTrainingResults.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Predictions_ModelStatus": {
+            "main": "./lib/actions/Predictions_ModelStatus.js",
+            "title": "Creates or updates the model status of prediction.",
+            "description": "Creates or updates the model status of prediction.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Predictions_ModelStatus.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Profiles_ListByHub": {
+            "main": "./lib/actions/Profiles_ListByHub.js",
+            "title": "Gets all profile in the hub.",
+            "description": "Gets all profile in the hub.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Profiles_ListByHub.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Profiles_Delete": {
+            "main": "./lib/actions/Profiles_Delete.js",
+            "title": "Deletes a profile within a hub",
+            "description": "Deletes a profile within a hub",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Profiles_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Profiles_Get": {
+            "main": "./lib/actions/Profiles_Get.js",
+            "title": "Gets information about the specified profile.",
+            "description": "Gets information about the specified profile.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Profiles_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Profiles_CreateOrUpdate": {
+            "main": "./lib/actions/Profiles_CreateOrUpdate.js",
+            "title": "Creates a profile within a Hub, or updates an existing profile.",
+            "description": "Creates a profile within a Hub, or updates an existing profile.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Profiles_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Profiles_GetEnrichingKpis": {
+            "main": "./lib/actions/Profiles_GetEnrichingKpis.js",
+            "title": "Gets the KPIs that enrich the profile Type identified by the supplied name. Enrichment happens through participants of the Interaction on an Interaction KPI and through Relationships for Profile KPIs.",
+            "description": "Gets the KPIs that enrich the profile Type identified by the supplied name. Enrichment happens through participants of the Interaction on an Interaction KPI and through Relationships for Profile KPIs.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Profiles_GetEnrichingKpis.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "RelationshipLinks_ListByHub": {
+            "main": "./lib/actions/RelationshipLinks_ListByHub.js",
+            "title": "Gets all relationship links in the hub.",
+            "description": "Gets all relationship links in the hub.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/RelationshipLinks_ListByHub.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "RelationshipLinks_Delete": {
+            "main": "./lib/actions/RelationshipLinks_Delete.js",
+            "title": "Deletes a relationship link within a hub.",
+            "description": "Deletes a relationship link within a hub.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/RelationshipLinks_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "RelationshipLinks_Get": {
+            "main": "./lib/actions/RelationshipLinks_Get.js",
+            "title": "Gets information about the specified relationship Link.",
+            "description": "Gets information about the specified relationship Link.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/RelationshipLinks_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "RelationshipLinks_CreateOrUpdate": {
+            "main": "./lib/actions/RelationshipLinks_CreateOrUpdate.js",
+            "title": "Creates a relationship link or updates an existing relationship link within a hub.",
+            "description": "Creates a relationship link or updates an existing relationship link within a hub.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/RelationshipLinks_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Relationships_ListByHub": {
+            "main": "./lib/actions/Relationships_ListByHub.js",
+            "title": "Gets all relationships in the hub.",
+            "description": "Gets all relationships in the hub.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Relationships_ListByHub.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Relationships_Delete": {
+            "main": "./lib/actions/Relationships_Delete.js",
+            "title": "Deletes a relationship within a hub.",
+            "description": "Deletes a relationship within a hub.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Relationships_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Relationships_Get": {
+            "main": "./lib/actions/Relationships_Get.js",
+            "title": "Gets information about the specified relationship.",
+            "description": "Gets information about the specified relationship.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Relationships_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Relationships_CreateOrUpdate": {
+            "main": "./lib/actions/Relationships_CreateOrUpdate.js",
+            "title": "Creates a relationship or updates an existing relationship within a hub.",
+            "description": "Creates a relationship or updates an existing relationship within a hub.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Relationships_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "RoleAssignments_ListByHub": {
+            "main": "./lib/actions/RoleAssignments_ListByHub.js",
+            "title": "Gets all the role assignments for the specified hub.",
+            "description": "Gets all the role assignments for the specified hub.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/RoleAssignments_ListByHub.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "RoleAssignments_Delete": {
+            "main": "./lib/actions/RoleAssignments_Delete.js",
+            "title": "Deletes the role assignment in the hub.",
+            "description": "Deletes the role assignment in the hub.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/RoleAssignments_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "RoleAssignments_Get": {
+            "main": "./lib/actions/RoleAssignments_Get.js",
+            "title": "Gets the role assignment in the hub.",
+            "description": "Gets the role assignment in the hub.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/RoleAssignments_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "RoleAssignments_CreateOrUpdate": {
+            "main": "./lib/actions/RoleAssignments_CreateOrUpdate.js",
+            "title": "Creates or updates a role assignment in the hub.",
+            "description": "Creates or updates a role assignment in the hub.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/RoleAssignments_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Roles_ListByHub": {
+            "main": "./lib/actions/Roles_ListByHub.js",
+            "title": "Gets all the roles for the hub.",
+            "description": "Gets all the roles for the hub.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Roles_ListByHub.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Views_ListByHub": {
+            "main": "./lib/actions/Views_ListByHub.js",
+            "title": "Gets all available views for given user in the specified hub.",
+            "description": "Gets all available views for given user in the specified hub.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Views_ListByHub.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Views_Delete": {
+            "main": "./lib/actions/Views_Delete.js",
+            "title": "Deletes a view in the specified hub.",
+            "description": "Deletes a view in the specified hub.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Views_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Views_Get": {
+            "main": "./lib/actions/Views_Get.js",
+            "title": "Gets a view in the hub.",
+            "description": "Gets a view in the hub.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Views_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Views_CreateOrUpdate": {
+            "main": "./lib/actions/Views_CreateOrUpdate.js",
+            "title": "Creates a view or updates an existing view in the hub.",
+            "description": "Creates a view or updates an existing view in the hub.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Views_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "WidgetTypes_ListByHub": {
+            "main": "./lib/actions/WidgetTypes_ListByHub.js",
+            "title": "Gets all available widget types in the specified hub.",
+            "description": "Gets all available widget types in the specified hub.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/WidgetTypes_ListByHub.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "WidgetTypes_Get": {
+            "main": "./lib/actions/WidgetTypes_Get.js",
+            "title": "Gets a widget type in the specified hub.",
+            "description": "Gets a widget type in the specified hub.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/WidgetTypes_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

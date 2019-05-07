@@ -1,0 +1,414 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "hubName": {
+            "required": true,
+            "type": "string"
+        },
+        "assignmentName": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_]+$"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "description": "Common properties of proxy resource.",
+                    "properties": {
+                        "id": {
+                            "description": "Resource ID.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "name": {
+                            "description": "Resource name.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "type": {
+                            "description": "Resource type.",
+                            "readOnly": true,
+                            "type": "string"
+                        }
+                    },
+                    "x-ms-azure-resource": true,
+                    "type": "object"
+                }
+            ],
+            "description": "The Role Assignment resource format.",
+            "properties": {
+                "properties": {
+                    "x-ms-client-flatten": true,
+                    "description": "The Role Assignment definition.",
+                    "properties": {
+                        "assignmentName": {
+                            "description": "The name of the metadata object.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "conflationPolicies": {
+                            "description": "Widget types set for the assignment.",
+                            "properties": {
+                                "elements": {
+                                    "description": "The elements included in the set.",
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "type": "array"
+                                },
+                                "exceptions": {
+                                    "description": "The elements that are not included in the set, in case elements contains '*' indicating 'all'.",
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "type": "array"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "connectors": {
+                            "description": "Connectors set for the assignment.",
+                            "properties": {
+                                "elements": {
+                                    "description": "The elements included in the set.",
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "type": "array"
+                                },
+                                "exceptions": {
+                                    "description": "The elements that are not included in the set, in case elements contains '*' indicating 'all'.",
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "type": "array"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "description": {
+                            "additionalProperties": {
+                                "type": "string"
+                            },
+                            "description": "Localized description for the metadata.",
+                            "type": "object"
+                        },
+                        "displayName": {
+                            "additionalProperties": {
+                                "type": "string"
+                            },
+                            "description": "Localized display names for the metadata.",
+                            "type": "object"
+                        },
+                        "interactions": {
+                            "description": "Interactions set for the assignment.",
+                            "properties": {
+                                "elements": {
+                                    "description": "The elements included in the set.",
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "type": "array"
+                                },
+                                "exceptions": {
+                                    "description": "The elements that are not included in the set, in case elements contains '*' indicating 'all'.",
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "type": "array"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "kpis": {
+                            "description": "Kpis set for the assignment.",
+                            "properties": {
+                                "elements": {
+                                    "description": "The elements included in the set.",
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "type": "array"
+                                },
+                                "exceptions": {
+                                    "description": "The elements that are not included in the set, in case elements contains '*' indicating 'all'.",
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "type": "array"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "links": {
+                            "description": "Links set for the assignment.",
+                            "properties": {
+                                "elements": {
+                                    "description": "The elements included in the set.",
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "type": "array"
+                                },
+                                "exceptions": {
+                                    "description": "The elements that are not included in the set, in case elements contains '*' indicating 'all'.",
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "type": "array"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "principals": {
+                            "description": "The principals being assigned to.",
+                            "items": {
+                                "description": "The AssignmentPrincipal",
+                                "properties": {
+                                    "principalId": {
+                                        "description": "The principal id being assigned to.",
+                                        "type": "string"
+                                    },
+                                    "principalMetadata": {
+                                        "additionalProperties": {
+                                            "type": "string"
+                                        },
+                                        "description": "Other metadata for the principal.",
+                                        "type": "object"
+                                    },
+                                    "principalType": {
+                                        "description": "The Type of the principal ID.",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "principalId",
+                                    "principalType"
+                                ],
+                                "type": "object"
+                            },
+                            "type": "array"
+                        },
+                        "profiles": {
+                            "description": "Profiles set for the assignment.",
+                            "properties": {
+                                "elements": {
+                                    "description": "The elements included in the set.",
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "type": "array"
+                                },
+                                "exceptions": {
+                                    "description": "The elements that are not included in the set, in case elements contains '*' indicating 'all'.",
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "type": "array"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "provisioningState": {
+                            "description": "Provisioning state.",
+                            "readOnly": true,
+                            "enum": [
+                                "Provisioning",
+                                "Succeeded",
+                                "Expiring",
+                                "Deleting",
+                                "HumanIntervention",
+                                "Failed"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": true,
+                                "name": "ProvisioningStates"
+                            }
+                        },
+                        "relationshipLinks": {
+                            "description": "The Role assignments set for the relationship links.",
+                            "properties": {
+                                "elements": {
+                                    "description": "The elements included in the set.",
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "type": "array"
+                                },
+                                "exceptions": {
+                                    "description": "The elements that are not included in the set, in case elements contains '*' indicating 'all'.",
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "type": "array"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "relationships": {
+                            "description": "The Role assignments set for the relationships.",
+                            "properties": {
+                                "elements": {
+                                    "description": "The elements included in the set.",
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "type": "array"
+                                },
+                                "exceptions": {
+                                    "description": "The elements that are not included in the set, in case elements contains '*' indicating 'all'.",
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "type": "array"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "role": {
+                            "description": "Type of roles.",
+                            "enum": [
+                                "Admin",
+                                "Reader",
+                                "ManageAdmin",
+                                "ManageReader",
+                                "DataAdmin",
+                                "DataReader"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": false,
+                                "name": "RoleTypes"
+                            }
+                        },
+                        "roleAssignments": {
+                            "description": "The Role assignments set for the assignment.",
+                            "properties": {
+                                "elements": {
+                                    "description": "The elements included in the set.",
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "type": "array"
+                                },
+                                "exceptions": {
+                                    "description": "The elements that are not included in the set, in case elements contains '*' indicating 'all'.",
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "type": "array"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "sasPolicies": {
+                            "description": "Sas Policies set for the assignment.",
+                            "properties": {
+                                "elements": {
+                                    "description": "The elements included in the set.",
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "type": "array"
+                                },
+                                "exceptions": {
+                                    "description": "The elements that are not included in the set, in case elements contains '*' indicating 'all'.",
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "type": "array"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "segments": {
+                            "description": "The Role assignments set for the assignment.",
+                            "properties": {
+                                "elements": {
+                                    "description": "The elements included in the set.",
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "type": "array"
+                                },
+                                "exceptions": {
+                                    "description": "The elements that are not included in the set, in case elements contains '*' indicating 'all'.",
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "type": "array"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "tenantId": {
+                            "description": "The hub name.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "views": {
+                            "description": "Views set for the assignment.",
+                            "properties": {
+                                "elements": {
+                                    "description": "The elements included in the set.",
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "type": "array"
+                                },
+                                "exceptions": {
+                                    "description": "The elements that are not included in the set, in case elements contains '*' indicating 'all'.",
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "type": "array"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "widgetTypes": {
+                            "description": "Widget types set for the assignment.",
+                            "properties": {
+                                "elements": {
+                                    "description": "The elements included in the set.",
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "type": "array"
+                                },
+                                "exceptions": {
+                                    "description": "The elements that are not included in the set, in case elements contains '*' indicating 'all'.",
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "type": "array"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "required": [
+                        "role",
+                        "principals"
+                    ]
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

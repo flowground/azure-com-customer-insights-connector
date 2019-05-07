@@ -1,0 +1,30 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "hubName": {
+            "required": true,
+            "type": "string"
+        },
+        "profileName": {
+            "required": true,
+            "type": "string"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "locale_code": {
+            "required": false,
+            "type": "string",
+            "default": "en-us"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

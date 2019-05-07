@@ -1,0 +1,98 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "hubName": {
+            "required": true,
+            "type": "string"
+        },
+        "authorizationPolicyName": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 50,
+            "pattern": "^[A-Za-z0-9]$|^[A-Za-z0-9][\\w-\\.]*[A-Za-z0-9]$"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "description": "Common properties of proxy resource.",
+                    "properties": {
+                        "id": {
+                            "description": "Resource ID.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "name": {
+                            "description": "Resource name.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "type": {
+                            "description": "Resource type.",
+                            "readOnly": true,
+                            "type": "string"
+                        }
+                    },
+                    "x-ms-azure-resource": true,
+                    "type": "object"
+                }
+            ],
+            "description": "The authorization policy resource format.",
+            "properties": {
+                "properties": {
+                    "x-ms-client-flatten": true,
+                    "description": "The authorization policy.",
+                    "properties": {
+                        "permissions": {
+                            "description": "The permissions associated with the policy.",
+                            "items": {
+                                "description": "Supported permission types.",
+                                "enum": [
+                                    "Read",
+                                    "Write",
+                                    "Manage"
+                                ],
+                                "type": "string",
+                                "x-ms-enum": {
+                                    "modelAsString": false,
+                                    "name": "PermissionTypes"
+                                }
+                            },
+                            "type": "array",
+                            "uniqueItems": true
+                        },
+                        "policyName": {
+                            "description": "Name of the policy.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "primaryKey": {
+                            "description": "Primary key associated with the policy.",
+                            "type": "string"
+                        },
+                        "secondaryKey": {
+                            "description": "Secondary key associated with the policy.",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "permissions"
+                    ]
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

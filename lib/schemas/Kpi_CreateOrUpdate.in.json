@@ -1,0 +1,299 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "hubName": {
+            "required": true,
+            "type": "string"
+        },
+        "kpiName": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_]+$"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "description": "Common properties of proxy resource.",
+                    "properties": {
+                        "id": {
+                            "description": "Resource ID.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "name": {
+                            "description": "Resource name.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "type": {
+                            "description": "Resource type.",
+                            "readOnly": true,
+                            "type": "string"
+                        }
+                    },
+                    "x-ms-azure-resource": true,
+                    "type": "object"
+                }
+            ],
+            "description": "The KPI resource format.",
+            "properties": {
+                "properties": {
+                    "x-ms-client-flatten": true,
+                    "description": "Defines the KPI Threshold limits.",
+                    "properties": {
+                        "aliases": {
+                            "description": "The aliases.",
+                            "items": {
+                                "description": "The KPI alias.",
+                                "properties": {
+                                    "aliasName": {
+                                        "description": "KPI alias name.",
+                                        "type": "string"
+                                    },
+                                    "expression": {
+                                        "description": "The expression.",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "aliasName",
+                                    "expression"
+                                ],
+                                "type": "object"
+                            },
+                            "type": "array"
+                        },
+                        "calculationWindow": {
+                            "description": "The calculation window.",
+                            "enum": [
+                                "Lifetime",
+                                "Hour",
+                                "Day",
+                                "Week",
+                                "Month"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": false,
+                                "name": "CalculationWindowTypes"
+                            }
+                        },
+                        "calculationWindowFieldName": {
+                            "description": "Name of calculation window field.",
+                            "type": "string"
+                        },
+                        "description": {
+                            "additionalProperties": {
+                                "type": "string"
+                            },
+                            "description": "Localized description for the KPI.",
+                            "type": "object"
+                        },
+                        "displayName": {
+                            "additionalProperties": {
+                                "type": "string"
+                            },
+                            "description": "Localized display name for the KPI.",
+                            "type": "object"
+                        },
+                        "entityType": {
+                            "description": "The mapping entity type.",
+                            "enum": [
+                                "None",
+                                "Profile",
+                                "Interaction",
+                                "Relationship"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": false,
+                                "name": "EntityTypes"
+                            }
+                        },
+                        "entityTypeName": {
+                            "description": "The mapping entity name.",
+                            "type": "string"
+                        },
+                        "expression": {
+                            "description": "The computation expression for the KPI.",
+                            "type": "string"
+                        },
+                        "extracts": {
+                            "description": "The KPI extracts.",
+                            "items": {
+                                "description": "The KPI extract.",
+                                "properties": {
+                                    "expression": {
+                                        "description": "The expression.",
+                                        "type": "string"
+                                    },
+                                    "extractName": {
+                                        "description": "KPI extract name.",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "extractName",
+                                    "expression"
+                                ],
+                                "type": "object"
+                            },
+                            "type": "array"
+                        },
+                        "filter": {
+                            "description": "The filter expression for the KPI.",
+                            "type": "string"
+                        },
+                        "function": {
+                            "description": "The computation function for the KPI.",
+                            "enum": [
+                                "Sum",
+                                "Avg",
+                                "Min",
+                                "Max",
+                                "Last",
+                                "Count",
+                                "None",
+                                "CountDistinct"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": false,
+                                "name": "KpiFunctions"
+                            }
+                        },
+                        "groupBy": {
+                            "description": "the group by properties for the KPI.",
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        "groupByMetadata": {
+                            "description": "The KPI GroupByMetadata.",
+                            "items": {
+                                "description": "The KPI GroupBy field metadata.",
+                                "properties": {
+                                    "displayName": {
+                                        "additionalProperties": {
+                                            "type": "string"
+                                        },
+                                        "description": "The display name.",
+                                        "type": "object"
+                                    },
+                                    "fieldName": {
+                                        "description": "The name of the field.",
+                                        "type": "string"
+                                    },
+                                    "fieldType": {
+                                        "description": "The type of the field.",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "readOnly": true,
+                            "type": "array"
+                        },
+                        "kpiName": {
+                            "description": "The KPI name.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "participantProfilesMetadata": {
+                            "description": "The participant profiles.",
+                            "items": {
+                                "description": "The KPI participant profile metadata.",
+                                "properties": {
+                                    "typeName": {
+                                        "description": "Name of the type.",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "typeName"
+                                ],
+                                "type": "object"
+                            },
+                            "readOnly": true,
+                            "type": "array"
+                        },
+                        "provisioningState": {
+                            "description": "Provisioning state.",
+                            "readOnly": true,
+                            "enum": [
+                                "Provisioning",
+                                "Succeeded",
+                                "Expiring",
+                                "Deleting",
+                                "HumanIntervention",
+                                "Failed"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": true,
+                                "name": "ProvisioningStates"
+                            }
+                        },
+                        "tenantId": {
+                            "description": "The hub name.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "thresHolds": {
+                            "description": "The KPI thresholds.",
+                            "properties": {
+                                "increasingKpi": {
+                                    "description": "Whether or not the KPI is an increasing KPI.",
+                                    "type": "boolean"
+                                },
+                                "lowerLimit": {
+                                    "description": "The lower threshold limit.",
+                                    "format": "decimal",
+                                    "type": "number"
+                                },
+                                "upperLimit": {
+                                    "description": "The upper threshold limit.",
+                                    "format": "decimal",
+                                    "type": "number"
+                                }
+                            },
+                            "required": [
+                                "lowerLimit",
+                                "upperLimit",
+                                "increasingKpi"
+                            ],
+                            "type": "object"
+                        },
+                        "unit": {
+                            "description": "The unit of measurement for the KPI.",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "entityType",
+                        "entityTypeName",
+                        "calculationWindow",
+                        "function",
+                        "expression"
+                    ]
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

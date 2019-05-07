@@ -1,0 +1,103 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "hubName": {
+            "required": true,
+            "type": "string"
+        },
+        "viewName": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "description": "Common properties of proxy resource.",
+                    "properties": {
+                        "id": {
+                            "description": "Resource ID.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "name": {
+                            "description": "Resource name.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "type": {
+                            "description": "Resource type.",
+                            "readOnly": true,
+                            "type": "string"
+                        }
+                    },
+                    "x-ms-azure-resource": true,
+                    "type": "object"
+                }
+            ],
+            "description": "The view resource format.",
+            "properties": {
+                "properties": {
+                    "x-ms-client-flatten": true,
+                    "description": "The view in Customer 360 web application.",
+                    "properties": {
+                        "changed": {
+                            "description": "Date time when view was last modified.",
+                            "format": "date-time",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "created": {
+                            "description": "Date time when view was created.",
+                            "format": "date-time",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "definition": {
+                            "description": "View definition.",
+                            "type": "string"
+                        },
+                        "displayName": {
+                            "additionalProperties": {
+                                "type": "string"
+                            },
+                            "description": "Localized display name for the view.",
+                            "type": "object"
+                        },
+                        "tenantId": {
+                            "description": "the hub name.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "userId": {
+                            "description": "the user ID.",
+                            "type": "string"
+                        },
+                        "viewName": {
+                            "description": "Name of the view.",
+                            "readOnly": true,
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "definition"
+                    ]
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

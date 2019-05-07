@@ -1,0 +1,220 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "hubName": {
+            "required": true,
+            "type": "string"
+        },
+        "linkName": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_]+$"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "description": "Common properties of proxy resource.",
+                    "properties": {
+                        "id": {
+                            "description": "Resource ID.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "name": {
+                            "description": "Resource name.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "type": {
+                            "description": "Resource type.",
+                            "readOnly": true,
+                            "type": "string"
+                        }
+                    },
+                    "x-ms-azure-resource": true,
+                    "type": "object"
+                }
+            ],
+            "description": "The link resource format.",
+            "properties": {
+                "properties": {
+                    "x-ms-client-flatten": true,
+                    "description": "The definition of Link.",
+                    "properties": {
+                        "description": {
+                            "additionalProperties": {
+                                "type": "string"
+                            },
+                            "description": "Localized descriptions for the Link.",
+                            "type": "object"
+                        },
+                        "displayName": {
+                            "additionalProperties": {
+                                "type": "string"
+                            },
+                            "description": "Localized display name for the Link.",
+                            "type": "object"
+                        },
+                        "linkName": {
+                            "description": "The link name.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "mappings": {
+                            "description": "The set of properties mappings between the source and target Types.",
+                            "items": {
+                                "description": "Metadata for a Link's property mapping.",
+                                "properties": {
+                                    "linkType": {
+                                        "description": "Link type.",
+                                        "enum": [
+                                            "UpdateAlways",
+                                            "CopyIfNull"
+                                        ],
+                                        "type": "string",
+                                        "x-ms-enum": {
+                                            "modelAsString": false,
+                                            "name": "LinkTypes"
+                                        }
+                                    },
+                                    "sourcePropertyName": {
+                                        "description": " Property name on the source Entity Type.",
+                                        "type": "string"
+                                    },
+                                    "targetPropertyName": {
+                                        "description": "Property name on the target Entity Type.",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "sourcePropertyName",
+                                    "targetPropertyName"
+                                ],
+                                "type": "object"
+                            },
+                            "type": "array"
+                        },
+                        "operationType": {
+                            "description": "Determines whether this link is supposed to create or delete instances if Link is NOT Reference Only.",
+                            "enum": [
+                                "Upsert",
+                                "Delete"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": false,
+                                "name": "InstanceOperationType"
+                            }
+                        },
+                        "participantPropertyReferences": {
+                            "description": "The properties that represent the participating profile.",
+                            "items": {
+                                "description": "The participant property reference.",
+                                "properties": {
+                                    "sourcePropertyName": {
+                                        "description": "The source property that maps to the target property.",
+                                        "type": "string"
+                                    },
+                                    "targetPropertyName": {
+                                        "description": "The target property that maps to the source property.",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "sourcePropertyName",
+                                    "targetPropertyName"
+                                ],
+                                "type": "object"
+                            },
+                            "type": "array"
+                        },
+                        "provisioningState": {
+                            "description": "Provisioning state.",
+                            "readOnly": true,
+                            "enum": [
+                                "Provisioning",
+                                "Succeeded",
+                                "Expiring",
+                                "Deleting",
+                                "HumanIntervention",
+                                "Failed"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": true,
+                                "name": "ProvisioningStates"
+                            }
+                        },
+                        "referenceOnly": {
+                            "description": "Indicating whether the link is reference only link. This flag is ignored if the Mappings are defined. If the mappings are not defined and it is set to true, links processing will not create or update profiles.",
+                            "type": "boolean"
+                        },
+                        "sourceEntityType": {
+                            "description": "Type of source entity.",
+                            "enum": [
+                                "None",
+                                "Profile",
+                                "Interaction",
+                                "Relationship"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": false,
+                                "name": "EntityType"
+                            }
+                        },
+                        "sourceEntityTypeName": {
+                            "description": "Name of the source Entity Type.",
+                            "type": "string"
+                        },
+                        "targetEntityType": {
+                            "description": "Type of target entity.",
+                            "enum": [
+                                "None",
+                                "Profile",
+                                "Interaction",
+                                "Relationship"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": false,
+                                "name": "EntityType"
+                            }
+                        },
+                        "targetEntityTypeName": {
+                            "description": "Name of the target Entity Type.",
+                            "type": "string"
+                        },
+                        "tenantId": {
+                            "description": "The hub name.",
+                            "readOnly": true,
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "sourceEntityType",
+                        "targetEntityType",
+                        "sourceEntityTypeName",
+                        "targetEntityTypeName",
+                        "participantPropertyReferences"
+                    ]
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

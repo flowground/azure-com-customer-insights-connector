@@ -1,0 +1,331 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "hubName": {
+            "required": true,
+            "type": "string"
+        },
+        "relationshipName": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_]+$"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "description": "Common properties of proxy resource.",
+                    "properties": {
+                        "id": {
+                            "description": "Resource ID.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "name": {
+                            "description": "Resource name.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "type": {
+                            "description": "Resource type.",
+                            "readOnly": true,
+                            "type": "string"
+                        }
+                    },
+                    "x-ms-azure-resource": true,
+                    "type": "object"
+                }
+            ],
+            "description": "The relationship resource format.",
+            "properties": {
+                "properties": {
+                    "x-ms-client-flatten": true,
+                    "description": "The definition of Relationship.",
+                    "properties": {
+                        "cardinality": {
+                            "description": "The Relationship Cardinality.",
+                            "enum": [
+                                "OneToOne",
+                                "OneToMany",
+                                "ManyToMany"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": false,
+                                "name": "CardinalityTypes"
+                            }
+                        },
+                        "description": {
+                            "additionalProperties": {
+                                "type": "string"
+                            },
+                            "description": "Localized descriptions for the Relationship.",
+                            "type": "object"
+                        },
+                        "displayName": {
+                            "additionalProperties": {
+                                "type": "string"
+                            },
+                            "description": "Localized display name for the Relationship.",
+                            "type": "object"
+                        },
+                        "expiryDateTimeUtc": {
+                            "description": "The expiry date time in UTC.",
+                            "format": "date-time",
+                            "type": "string"
+                        },
+                        "fields": {
+                            "description": "The properties of the Relationship.",
+                            "items": {
+                                "description": "Property definition.",
+                                "properties": {
+                                    "arrayValueSeparator": {
+                                        "description": "Array value separator for properties with isArray set.",
+                                        "type": "string"
+                                    },
+                                    "dataSourcePrecedenceRules": {
+                                        "description": "This is specific to interactions modeled as activities. Data sources are used to determine where data is stored and also in precedence rules.",
+                                        "items": {
+                                            "description": "The data source precedence is a way to know the precedence of each data source.",
+                                            "properties": {
+                                                "dataSource": {
+                                                    "x-ms-client-flatten": true,
+                                                    "description": "Data Source is a way for us to know the source of instances. A single type can have data coming in from multiple places. In activities we use this to determine precedence rules.",
+                                                    "properties": {
+                                                        "dataSourceReferenceId": {
+                                                            "description": "The data source reference id.",
+                                                            "readOnly": true,
+                                                            "type": "string"
+                                                        },
+                                                        "dataSourceType": {
+                                                            "description": "The data source type.",
+                                                            "enum": [
+                                                                "Connector",
+                                                                "LinkInteraction",
+                                                                "SystemDefault"
+                                                            ],
+                                                            "readOnly": true,
+                                                            "type": "string",
+                                                            "x-ms-enum": {
+                                                                "modelAsString": true,
+                                                                "name": "DataSourceType"
+                                                            }
+                                                        },
+                                                        "id": {
+                                                            "description": "The data source ID.",
+                                                            "readOnly": true,
+                                                            "type": "integer"
+                                                        },
+                                                        "name": {
+                                                            "description": "The data source name",
+                                                            "readOnly": true,
+                                                            "type": "string"
+                                                        },
+                                                        "status": {
+                                                            "description": "The data source status.",
+                                                            "enum": [
+                                                                "None",
+                                                                "Active",
+                                                                "Deleted"
+                                                            ],
+                                                            "readOnly": true,
+                                                            "type": "string",
+                                                            "x-ms-enum": {
+                                                                "modelAsString": true,
+                                                                "name": "Status"
+                                                            }
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                "precedence": {
+                                                    "description": "the precedence value.",
+                                                    "type": "integer"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "readOnly": true,
+                                        "type": "array"
+                                    },
+                                    "enumValidValues": {
+                                        "description": "Describes valid values for an enum property.",
+                                        "items": {
+                                            "description": "Valid enum values in case of an enum property.",
+                                            "properties": {
+                                                "localizedValueNames": {
+                                                    "additionalProperties": {
+                                                        "type": "string"
+                                                    },
+                                                    "description": "Localized names of the enum member.",
+                                                    "type": "object"
+                                                },
+                                                "value": {
+                                                    "description": "The integer value of the enum member.",
+                                                    "type": "integer"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "type": "array"
+                                    },
+                                    "fieldName": {
+                                        "description": "Name of the property.",
+                                        "type": "string"
+                                    },
+                                    "fieldType": {
+                                        "description": "Type of the property.",
+                                        "type": "string"
+                                    },
+                                    "isArray": {
+                                        "description": "Indicates if the property is actually an array of the fieldType above on the data api.",
+                                        "type": "boolean"
+                                    },
+                                    "isAvailableInGraph": {
+                                        "description": "Whether property is available in graph or not.",
+                                        "type": "boolean"
+                                    },
+                                    "isEnum": {
+                                        "description": "Indicates if the property is an enum.",
+                                        "type": "boolean"
+                                    },
+                                    "isFlagEnum": {
+                                        "description": "Indicates if the property is an flag enum.",
+                                        "type": "boolean"
+                                    },
+                                    "isImage": {
+                                        "description": "Whether the property is an Image.",
+                                        "type": "boolean"
+                                    },
+                                    "isLocalizedString": {
+                                        "description": "Whether the property is a localized string.",
+                                        "type": "boolean"
+                                    },
+                                    "isName": {
+                                        "description": "Whether the property is a name or a part of name.",
+                                        "type": "boolean"
+                                    },
+                                    "isRequired": {
+                                        "description": "Whether property value is required on instances, IsRequired field only for Interaction. Profile Instance will not check for required field.",
+                                        "type": "boolean"
+                                    },
+                                    "maxLength": {
+                                        "description": "Max length of string. Used only if type is string.",
+                                        "type": "integer"
+                                    },
+                                    "propertyId": {
+                                        "description": "The ID associated with the property.",
+                                        "type": "string"
+                                    },
+                                    "schemaItemPropLink": {
+                                        "description": "URL encoded schema.org item prop link for the property.",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "fieldName",
+                                    "fieldType"
+                                ],
+                                "type": "object"
+                            },
+                            "type": "array"
+                        },
+                        "lookupMappings": {
+                            "description": "Optional property to be used to map fields in profile to their strong ids in related profile.",
+                            "items": {
+                                "description": "Maps fields in Profile to their corresponding StrongIds in Related Profile.",
+                                "properties": {
+                                    "fieldMappings": {
+                                        "description": "Maps a profile property with the StrongId of related profile. This is an array to support StrongIds that are composite key as well.",
+                                        "items": {
+                                            "description": "Map a field of profile to its corresponding StrongId in Related Profile.",
+                                            "properties": {
+                                                "profileFieldName": {
+                                                    "description": "Specifies the fieldName in profile.",
+                                                    "type": "string"
+                                                },
+                                                "relatedProfileKeyProperty": {
+                                                    "description": "Specifies the KeyProperty (from StrongId) of the related profile.",
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": [
+                                                "profileFieldName",
+                                                "relatedProfileKeyProperty"
+                                            ],
+                                            "type": "object"
+                                        },
+                                        "type": "array"
+                                    }
+                                },
+                                "required": [
+                                    "fieldMappings"
+                                ],
+                                "type": "object"
+                            },
+                            "type": "array"
+                        },
+                        "profileType": {
+                            "description": "Profile type.",
+                            "type": "string"
+                        },
+                        "provisioningState": {
+                            "description": "Provisioning state.",
+                            "readOnly": true,
+                            "enum": [
+                                "Provisioning",
+                                "Succeeded",
+                                "Expiring",
+                                "Deleting",
+                                "HumanIntervention",
+                                "Failed"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": true,
+                                "name": "ProvisioningStates"
+                            }
+                        },
+                        "relatedProfileType": {
+                            "description": "Related profile being referenced.",
+                            "type": "string"
+                        },
+                        "relationshipGuidId": {
+                            "description": "The relationship guid id.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "relationshipName": {
+                            "description": "The Relationship name.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "tenantId": {
+                            "description": "The hub name.",
+                            "readOnly": true,
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "profileType",
+                        "relatedProfileType"
+                    ]
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

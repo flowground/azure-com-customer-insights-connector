@@ -1,0 +1,146 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "hubName": {
+            "required": true,
+            "type": "string"
+        },
+        "connectorName": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_]+$"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "description": "Common properties of proxy resource.",
+                    "properties": {
+                        "id": {
+                            "description": "Resource ID.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "name": {
+                            "description": "Resource name.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "type": {
+                            "description": "Resource type.",
+                            "readOnly": true,
+                            "type": "string"
+                        }
+                    },
+                    "x-ms-azure-resource": true,
+                    "type": "object"
+                }
+            ],
+            "description": "The connector resource format.",
+            "properties": {
+                "properties": {
+                    "x-ms-client-flatten": true,
+                    "description": "Properties of connector.",
+                    "properties": {
+                        "connectorId": {
+                            "description": "ID of the connector.",
+                            "readOnly": true,
+                            "type": "integer"
+                        },
+                        "connectorName": {
+                            "description": "Name of the connector.",
+                            "type": "string"
+                        },
+                        "connectorProperties": {
+                            "additionalProperties": {
+                                "type": "object"
+                            },
+                            "description": "The connector properties.",
+                            "type": "object"
+                        },
+                        "connectorType": {
+                            "description": "Type of connector.",
+                            "enum": [
+                                "None",
+                                "CRM",
+                                "AzureBlob",
+                                "Salesforce",
+                                "ExchangeOnline",
+                                "Outbound"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": true,
+                                "name": "ConnectorTypes"
+                            }
+                        },
+                        "created": {
+                            "description": "The created time.",
+                            "format": "date-time",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "description": {
+                            "description": "Description of the connector.",
+                            "type": "string"
+                        },
+                        "displayName": {
+                            "description": "Display name of the connector.",
+                            "type": "string"
+                        },
+                        "isInternal": {
+                            "description": "If this is an internal connector.",
+                            "type": "boolean"
+                        },
+                        "lastModified": {
+                            "description": "The last modified time.",
+                            "format": "date-time",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "state": {
+                            "description": "State of connector.",
+                            "enum": [
+                                "Creating",
+                                "Created",
+                                "Ready",
+                                "Expiring",
+                                "Deleting",
+                                "Failed"
+                            ],
+                            "readOnly": true,
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": false,
+                                "name": "ConnectorStates"
+                            }
+                        },
+                        "tenantId": {
+                            "description": "The hub name.",
+                            "readOnly": true,
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "connectorType",
+                        "connectorProperties"
+                    ]
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

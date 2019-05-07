@@ -1,0 +1,230 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "hubName": {
+            "required": true,
+            "type": "string"
+        },
+        "predictionName": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "description": "Common properties of proxy resource.",
+                    "properties": {
+                        "id": {
+                            "description": "Resource ID.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "name": {
+                            "description": "Resource name.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "type": {
+                            "description": "Resource type.",
+                            "readOnly": true,
+                            "type": "string"
+                        }
+                    },
+                    "x-ms-azure-resource": true,
+                    "type": "object"
+                }
+            ],
+            "description": "The prediction resource format.",
+            "properties": {
+                "properties": {
+                    "x-ms-client-flatten": true,
+                    "description": "The prediction definition.",
+                    "properties": {
+                        "autoAnalyze": {
+                            "description": "Whether do auto analyze.",
+                            "type": "boolean"
+                        },
+                        "description": {
+                            "additionalProperties": {
+                                "type": "string"
+                            },
+                            "description": "Description of the prediction.",
+                            "type": "object"
+                        },
+                        "displayName": {
+                            "additionalProperties": {
+                                "type": "string"
+                            },
+                            "description": "Display name of the prediction.",
+                            "type": "object"
+                        },
+                        "grades": {
+                            "description": "The prediction grades.",
+                            "items": {
+                                "description": "The definition of a prediction grade.",
+                                "properties": {
+                                    "gradeName": {
+                                        "description": "Name of the grade.",
+                                        "type": "string"
+                                    },
+                                    "maxScoreThreshold": {
+                                        "description": "Maximum score threshold.",
+                                        "type": "integer"
+                                    },
+                                    "minScoreThreshold": {
+                                        "description": "Minimum score threshold.",
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "type": "array"
+                        },
+                        "involvedInteractionTypes": {
+                            "description": "Interaction types involved in the prediction.",
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        "involvedKpiTypes": {
+                            "description": "KPI types involved in the prediction.",
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        "involvedRelationships": {
+                            "description": "Relationships involved in the prediction.",
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        "mappings": {
+                            "description": "Definition of the link mapping of prediction.",
+                            "properties": {
+                                "grade": {
+                                    "description": "The grade of the link mapping.",
+                                    "type": "string"
+                                },
+                                "reason": {
+                                    "description": "The reason of the link mapping.",
+                                    "type": "string"
+                                },
+                                "score": {
+                                    "description": "The score of the link mapping.",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "score",
+                                "grade",
+                                "reason"
+                            ],
+                            "type": "object"
+                        },
+                        "negativeOutcomeExpression": {
+                            "description": "Negative outcome expression.",
+                            "type": "string"
+                        },
+                        "positiveOutcomeExpression": {
+                            "description": "Positive outcome expression.",
+                            "type": "string"
+                        },
+                        "predictionName": {
+                            "description": "Name of the prediction.",
+                            "type": "string"
+                        },
+                        "primaryProfileType": {
+                            "description": "Primary profile type.",
+                            "type": "string"
+                        },
+                        "provisioningState": {
+                            "description": "Provisioning state.",
+                            "readOnly": true,
+                            "enum": [
+                                "Provisioning",
+                                "Succeeded",
+                                "Expiring",
+                                "Deleting",
+                                "HumanIntervention",
+                                "Failed"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": true,
+                                "name": "ProvisioningStates"
+                            }
+                        },
+                        "scopeExpression": {
+                            "description": "Scope expression.",
+                            "type": "string"
+                        },
+                        "scoreLabel": {
+                            "description": "Score label.",
+                            "type": "string"
+                        },
+                        "systemGeneratedEntities": {
+                            "description": "System generated entities.",
+                            "properties": {
+                                "generatedInteractionTypes": {
+                                    "description": "Generated interaction types.",
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "type": "array"
+                                },
+                                "generatedKpis": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "description": "Generated KPIs.",
+                                    "type": "object"
+                                },
+                                "generatedLinks": {
+                                    "description": "Generated links.",
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "type": "array"
+                                }
+                            },
+                            "readOnly": true,
+                            "type": "object"
+                        },
+                        "tenantId": {
+                            "description": "The hub name.",
+                            "readOnly": true,
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "negativeOutcomeExpression",
+                        "positiveOutcomeExpression",
+                        "primaryProfileType",
+                        "scopeExpression",
+                        "autoAnalyze",
+                        "mappings",
+                        "scoreLabel"
+                    ]
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}
